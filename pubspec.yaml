@@ -1,0 +1,14 @@
+name: adi_helpers
+description: A bunch of random helpers
+version: 1.0.0
+author: Adrian
+ 
+environment:  
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:  
+  quiver: ^2.0.1 
+
+dev_dependencies:  
+  test: ^1.0.0
+  
