@@ -11,7 +11,7 @@ String getInBracketsRight(String input) {
   return r;
 }
 
-///Gets the first full word from the beginning of the text 
+///Gets the first full word from the beginning of the text
 ///delimited by a space
 ///inp: blah<blim> fn
 ///out: blah<blim>
