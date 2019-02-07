@@ -1,2 +1,2 @@
-bool Function(String) contains(String source) =>
-    (Pattern other) => source.contains(other);
+bool Function(String) contains(Pattern other) =>
+    (String source) => source.contains(other);

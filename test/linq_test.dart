@@ -1,10 +1,10 @@
 import 'package:adi_helpers/linqH.dart';
-import 'package:collection/collection.dart';
+import 'package:collection/collection.dart' as col;
 import 'package:quiver/core.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var eq = const DeepCollectionEquality().equals;
+  var eq = const col.DeepCollectionEquality().equals;
 
   group("max", () {
     test("0", () {
@@ -30,7 +30,7 @@ void main() {
         [new _Person(3, "Max")]
       ]);
 
-      var result = groupBy2<_Person, String>(people, by: (val) => val.name);
+      var result = groupBy<_Person, String>(people, by: (val) => val.name);
 
       var areEqual = eq(result, expected);
       expect(areEqual, true);
