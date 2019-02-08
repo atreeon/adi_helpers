@@ -83,6 +83,9 @@ void main() {
       exp_splitByIndices(
           "aa{a,a}a<a,a>a,a", [4, 14], ["aa{a", ",a}a<a,a>a", ",a"]);
     });
+    test("2", () {
+      exp_splitByIndices("ecran", [], ["ecran"]);
+    });
   });
 
   group("splitByLastOf", () {

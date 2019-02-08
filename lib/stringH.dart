@@ -87,6 +87,8 @@ Bracket getBracket(BracketType bracketType) =>
 
 ///Splits a string at the indices passed in
 List<String> splitByIndices(String source, List<int> positions) {
+  if (positions.length == 0) return [source];
+
   if (positions[0] != 0) positions.insert(0, 0);
   if (positions[positions.length - 1] != source.length)
     positions.insert(positions.length, source.length);
