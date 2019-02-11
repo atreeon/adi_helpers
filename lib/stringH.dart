@@ -72,7 +72,7 @@ class Bracket {
 
   Bracket(this.bracketType, this.start, this.end);
 }
-
+ 
 ///The data for Bracket
 final bracketData = [
   Bracket(BracketType.angled, "<", ">"),
