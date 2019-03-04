@@ -40,6 +40,28 @@ Optional<StrPos> bracketPositionRight(String source) {
   return Optional.absent();
 }
 
+///Finds the brackets furthest to the left '(L) (R)'
+///Returns a start and end position
+///inp: bl(blim) (plumpy(stumpy))
+///out: 2, 7
+Optional<StrPos> bracketPositionLeft(String source, BracketType bracketType) {
+  var bracket = getBracket(bracketType);
+
+  //remove bracket and space to the right
+  var startIndex = source.indexOf(bracket.start) + 1; //
+
+  //per char check for closing bracket
+  var bracketCount = 1;
+  for (var i = startIndex; i < source.length; i++) {
+    if (source[i] == bracket.start) bracketCount++;
+    if (source[i] == bracket.end) bracketCount--;
+
+    if (bracketCount == 0) return Optional.fromNullable(StrPos(startIndex, i));
+  }
+
+  return Optional.absent();
+}
+
 ///Gets the starting positions of the pattern inside brackets
 ///inp: aaa,aaaa<aa,a,>aa,a |
 ///out: [3,17]
@@ -72,7 +94,7 @@ class Bracket {
 
   Bracket(this.bracketType, this.start, this.end);
 }
- 
+
 ///The data for Bracket
 final bracketData = [
   Bracket(BracketType.angled, "<", ">"),
@@ -103,6 +125,8 @@ List<String> splitByIndices(String source, List<int> positions) {
 
 ///Splits a string into two where it finds the pattern
 /// closest to the right of the string
+///inp: "this is a test", " "
+///out: ["this is a", "test"]
 List<String> splitByLastOf(String source, String pattern) {
   var i = source.lastIndexOf(pattern);
   var r = [source.substring(0, i), source.substring(i + 1)];

@@ -59,6 +59,35 @@ void main() {
     });
   });
 
+  group("bracketPositionLeft", () {
+    void exp_bracketPositionLeft(String source, Optional<StrPos> expected) =>
+        expect(bracketPositionLeft(source, BracketType.parenthesis), expected,
+            reason: "input:" + source); //, expected);
+
+    test(
+        "1",
+        () => exp_bracketPositionLeft("(plumpy(stumpy)) bl(blim) ",
+            Optional.fromNullable(StrPos(1, 15))));
+    test(
+        "2",
+        () => exp_bracketPositionLeft("l1b(l2a)l1csd()fsdf(l1a(l2a)l1b(l2a)l1c",
+            Optional.fromNullable(StrPos(4, 7))));
+    test(
+        "3",
+        () => exp_bracketPositionLeft("fsdf(l1a(l2a)l1b(l2a)l1c)sd()",
+            Optional.fromNullable(StrPos(5, 24))));
+    test("4", () => exp_bracketPositionLeft("", Optional.absent()));
+
+    test("bracketPositionRight5", () {
+      var input = "sd()fsdf(l1a(l2a)l1b(l2a)l1c";
+      var expected = "l2a";
+      var stringInBrackets = bracketPositionRight(input);
+      var result = input.substring(
+          stringInBrackets.value.start, stringInBrackets.value.end);
+      expect(result, expected);
+    });
+  });
+
   group("findOutsideOfBrackets", () {
     void exp_findOutsideOfBrackets(BracketType bracketType, String source,
         String pattern, List<int> expected) {
