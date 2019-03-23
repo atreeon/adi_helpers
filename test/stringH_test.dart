@@ -1,24 +1,24 @@
 import 'package:adi_helpers/stringH.dart';
 import 'package:adi_helpers/testH.dart';
-import 'package:quiver/core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
 void main() {
   final fnDef5 = "f5() → String";
 
   group("getInBracketsRight", () {
-    void exp_getInBracketsRight(String input, String expected) =>
+    void exp_getInBracketsRight(String input, Option<String> expected) =>
         expectGen((x) => getInBracketsRight(x), input, expected);
 
     test(
-        "getInBracketsRight1",
+        "1",
         () => exp_getInBracketsRight(
-            "out b4((inner) outer)out aft", "((inner) outer)"));
-    test("getInBracketsRight2", () => exp_getInBracketsRight(fnDef5, "()"));
+            "out b4((inner) outer)out aft", some("((inner) outer)")));
+    test("2", () => exp_getInBracketsRight(fnDef5, some("()")));
     test(
-        "getInBracketsRight3",
+        "3",
         () => exp_getInBracketsRight(
-            "bl(blim) (plumpy(stumpy))", "(plumpy(stumpy))"));
+            "bl(blim) (plumpy(stumpy))", some("(plumpy(stumpy))")));
   });
 
   group("firstWord", () {
@@ -31,61 +31,51 @@ void main() {
   });
 
   group("bracketPositionRight", () {
-    void exp_bracketPositionRight(String input, Optional<StrPos> expected) =>
+    void exp_bracketPositionRight(String input, Option<StrPos> expected) =>
         expectGen(bracketPositionRight, input, expected);
 
     test(
         "bracketPositionRight1",
-        () => exp_bracketPositionRight("bl(blim) (plumpy(stumpy))",
-            Optional.fromNullable(StrPos(10, 24))));
+        () => exp_bracketPositionRight(
+            "bl(blim) (plumpy(stumpy))", some(StrPos(10, 24))));
     test(
         "bracketPositionRight2",
-        () => exp_bracketPositionRight("sd()fsdf(l1a(l2a)l1b(l2a)l1c",
-            Optional.fromNullable(StrPos(21, 24))));
+        () => exp_bracketPositionRight(
+            "sd()fsdf(l1a(l2a)l1b(l2a)l1c", some(StrPos(21, 24))));
     test(
         "bracketPositionRight3",
-        () => exp_bracketPositionRight("sd()fsdf(l1a(l2a)l1b(l2a)l1c)",
-            Optional.fromNullable(StrPos(9, 28))));
-    test("bracketPositionRight4",
-        () => exp_bracketPositionRight("", Optional.absent()));
+        () => exp_bracketPositionRight(
+            "sd()fsdf(l1a(l2a)l1b(l2a)l1c)", some(StrPos(9, 28))));
+    test("bracketPositionRight4", () => exp_bracketPositionRight("", none()));
 
     test("bracketPositionRight5", () {
       var input = "sd()fsdf(l1a(l2a)l1b(l2a)l1c";
-      var expected = "l2a";
+      var expected = some("l2a");
       var stringInBrackets = bracketPositionRight(input);
-      var result = input.substring(
-          stringInBrackets.value.start, stringInBrackets.value.end);
+      var result =
+          stringInBrackets.bind((x) => some(input.substring(x.start, x.end)));
       expect(result, expected);
     });
   });
 
   group("bracketPositionLeft", () {
-    void exp_bracketPositionLeft(String source, Optional<StrPos> expected) =>
+    void exp_bracketPositionLeft(String source, Option<StrPos> expected) =>
         expect(bracketPositionLeft(source, BracketType.parenthesis), expected,
             reason: "input:" + source); //, expected);
 
     test(
         "1",
-        () => exp_bracketPositionLeft("(plumpy(stumpy)) bl(blim) ",
-            Optional.fromNullable(StrPos(1, 15))));
+        () => exp_bracketPositionLeft(
+            "(plumpy(stumpy)) bl(blim) ", some(StrPos(1, 15))));
     test(
         "2",
-        () => exp_bracketPositionLeft("l1b(l2a)l1csd()fsdf(l1a(l2a)l1b(l2a)l1c",
-            Optional.fromNullable(StrPos(4, 7))));
+        () => exp_bracketPositionLeft(
+            "l1b(l2a)l1csd()fsdf(l1a(l2a)l1b(l2a)l1c", some(StrPos(4, 7))));
     test(
         "3",
-        () => exp_bracketPositionLeft("fsdf(l1a(l2a)l1b(l2a)l1c)sd()",
-            Optional.fromNullable(StrPos(5, 24))));
-    test("4", () => exp_bracketPositionLeft("", Optional.absent()));
-
-    test("bracketPositionRight5", () {
-      var input = "sd()fsdf(l1a(l2a)l1b(l2a)l1c";
-      var expected = "l2a";
-      var stringInBrackets = bracketPositionRight(input);
-      var result = input.substring(
-          stringInBrackets.value.start, stringInBrackets.value.end);
-      expect(result, expected);
-    });
+        () => exp_bracketPositionLeft(
+            "fsdf(l1a(l2a)l1b(l2a)l1c)sd()", some(StrPos(5, 24))));
+    test("4", () => exp_bracketPositionLeft("", none()));
   });
 
   group("findOutsideOfBrackets", () {

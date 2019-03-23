@@ -1,14 +1,13 @@
 import 'package:adi_helpers/regexH.dart';
 import 'package:quiver/core.dart';
+import 'package:dartz/dartz.dart';
 
 ///Finds the brackets furthest to the right '(L) (R)'
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: (plumpy(stumpy))
-String getInBracketsRight(String input) {
-  var pos = bracketPositionRight(input);
-  if (pos.isEmpty) return "";
-  var r = input.substring(pos.value.start - 1, pos.value.end + 1);
-  return r;
+Option<String> getInBracketsRight(String input) {
+  return bracketPositionRight(input)
+      .bind((x) => some(input.substring(x.start - 1, x.end + 1)));
 }
 
 ///Gets the first full word from the beginning of the text
@@ -23,7 +22,7 @@ String firstWord(String source) {
 ///Returns a start and end position
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: 10, 24;
-Optional<StrPos> bracketPositionRight(String source) {
+Option<StrPos> bracketPositionRight(String source) {
   //remove bracket and space to the right
   var startIndex = source.lastIndexOf(')') - 1; //
 
@@ -33,18 +32,17 @@ Optional<StrPos> bracketPositionRight(String source) {
     if (source[i] == '(') bracketCount++;
     if (source[i] == ')') bracketCount--;
 
-    if (bracketCount == 0)
-      return Optional.fromNullable(StrPos(i + 1, startIndex + 1));
+    if (bracketCount == 0) return some(StrPos(i + 1, startIndex + 1));
   }
 
-  return Optional.absent();
+  return none();
 }
 
 ///Finds the brackets furthest to the left '(L) (R)'
 ///Returns a start and end position
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: 2, 7
-Optional<StrPos> bracketPositionLeft(String source, BracketType bracketType) {
+Option<StrPos> bracketPositionLeft(String source, BracketType bracketType) {
   var bracket = getBracket(bracketType);
 
   //remove bracket and space to the right
@@ -56,10 +54,10 @@ Optional<StrPos> bracketPositionLeft(String source, BracketType bracketType) {
     if (source[i] == bracket.start) bracketCount++;
     if (source[i] == bracket.end) bracketCount--;
 
-    if (bracketCount == 0) return Optional.fromNullable(StrPos(startIndex, i));
+    if (bracketCount == 0) return some(StrPos(startIndex, i));
   }
 
-  return Optional.absent();
+  return none();
 }
 
 ///Gets the starting positions of the pattern inside brackets

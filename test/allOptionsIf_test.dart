@@ -32,4 +32,27 @@ void main() {
       expect(result, "nothing");
     });
   });
+
+  group("case2", () {
+    test("1", () {
+      var valueInput = TwoFruits.orange;
+      var result = //
+          case2(valueInput, {
+        TwoFruits.orange: "oh, love my oranges",
+        TwoFruits.peach: "oooo, what a lovely soft peach",
+      });
+      expect(result, "oh, love my oranges");
+    });
+
+    test("2 exception if no option is found", () {
+      var valueInput = TwoFruits.peach;
+
+      expect(
+          () => //
+              case2(valueInput, {
+                TwoFruits.orange: "oh, love my oranges",
+              }),
+          throwsA(predicate((e) => e is Exception)));
+    });
+  });
 }
