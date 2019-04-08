@@ -6,6 +6,15 @@ import 'package:test/test.dart';
 void main() {
   final fnDef5 = "f5() → String";
 
+  group("createSpaces", () {
+    void exp_createSpaces(int input, String expected) =>
+        expect(createSpaces(input), expected);
+
+    test("1", () => exp_createSpaces(5, "     "));
+
+    test("2", () => exp_createSpaces(2, "  "));
+  });
+
   group("getInBracketsRight", () {
     void exp_getInBracketsRight(String input, Option<String> expected) =>
         expectGen((x) => getInBracketsRight(x), input, expected);

@@ -2,6 +2,17 @@ import 'package:adi_helpers/regexH.dart';
 import 'package:quiver/core.dart';
 import 'package:dartz/dartz.dart';
 
+///Creates a string of the determined number of spaces
+///inp: 5
+///out: "     "
+String createSpaces(int number) {
+  var str = "";
+  for (var i = 0; i < number; i++) {
+    str = str + " ";
+  }
+  return str;
+}
+
 ///Finds the brackets furthest to the right '(L) (R)'
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: (plumpy(stumpy))
