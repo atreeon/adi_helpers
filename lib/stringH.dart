@@ -16,8 +16,8 @@ String createSpaces(int number) {
 ///Finds the brackets furthest to the right '(L) (R)'
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: (plumpy(stumpy))
-Option<String> getInBracketsRight(String input) {
-  return bracketPositionRight(input)
+Option<String> getInBracketsRight(String input, BracketType bracketType) {
+  return bracketPositionRight(input, bracketType)
       .bind((x) => some(input.substring(x.start - 1, x.end + 1)));
 }
 
@@ -33,15 +33,17 @@ String firstWord(String source) {
 ///Returns a start and end position
 ///inp: bl(blim) (plumpy(stumpy))
 ///out: 10, 24;
-Option<StrPos> bracketPositionRight(String source) {
+Option<StrPos> bracketPositionRight(String source, BracketType bracketType) {
+  var bracket = getBracket(bracketType);
+
   //remove bracket and space to the right
-  var startIndex = source.lastIndexOf(')') - 1; //
+  var startIndex = source.lastIndexOf(bracket.end) - 1; //
 
   //per char check for closing bracket
   var bracketCount = -1;
   for (var i = startIndex; i >= 0; i--) {
-    if (source[i] == '(') bracketCount++;
-    if (source[i] == ')') bracketCount--;
+    if (source[i] == bracket.start) bracketCount++;
+    if (source[i] == bracket.end) bracketCount--;
 
     if (bracketCount == 0) return some(StrPos(i + 1, startIndex + 1));
   }

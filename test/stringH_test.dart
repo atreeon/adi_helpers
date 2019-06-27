@@ -17,7 +17,8 @@ void main() {
 
   group("getInBracketsRight", () {
     void exp_getInBracketsRight(String input, Option<String> expected) =>
-        expectGen((x) => getInBracketsRight(x), input, expected);
+        expectGen((x) => getInBracketsRight(x, BracketType.parenthesis), input,
+            expected);
 
     test(
         "1",
@@ -41,7 +42,11 @@ void main() {
 
   group("bracketPositionRight", () {
     void exp_bracketPositionRight(String input, Option<StrPos> expected) =>
-        expectGen(bracketPositionRight, input, expected);
+        expectGen((x) => bracketPositionRight(x, BracketType.parenthesis),
+            input, expected);
+
+    // void exp_bracketPositionRight(String input, Option<StrPos> expected) =>
+    //     expectGen(bracketPositionRight, input, expected);
 
     test(
         "bracketPositionRight1",
@@ -60,7 +65,8 @@ void main() {
     test("bracketPositionRight5", () {
       var input = "sd()fsdf(l1a(l2a)l1b(l2a)l1c";
       var expected = some("l2a");
-      var stringInBrackets = bracketPositionRight(input);
+      var stringInBrackets =
+          bracketPositionRight(input, BracketType.parenthesis);
       var result =
           stringInBrackets.bind((x) => some(input.substring(x.start, x.end)));
       expect(result, expected);
