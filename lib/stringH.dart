@@ -36,6 +36,8 @@ String firstWord(String source) {
 Option<StrPos> bracketPositionRight(String source, BracketType bracketType) {
   var bracket = getBracket(bracketType);
 
+  //TODO: need to find and remove all strings and brackets & remove the brackets from there (or not count them)
+
   //remove bracket and space to the right
   var startIndex = source.lastIndexOf(bracket.end) - 1; //
 

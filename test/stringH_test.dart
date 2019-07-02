@@ -3,6 +3,8 @@ import 'package:adi_helpers/testH.dart';
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
+import 'bracketRightPosData.dart';
+
 void main() {
   final fnDef5 = "f5() → String";
 
@@ -69,6 +71,17 @@ void main() {
           bracketPositionRight(input, BracketType.parenthesis);
       var result =
           stringInBrackets.bind((x) => some(input.substring(x.start, x.end)));
+      expect(result, expected);
+    });
+
+    //TODO: need to find and remove all strings and brackets & remove the brackets from there (or not count them)
+    //      workaround: no magic strings
+    test("bracketPositionRight6", () {
+      var expected = some(StrPos(3, 20));
+      var stringInBrackets =
+          bracketPositionRight(bracketRightPosData, BracketType.curly);
+      var result = stringInBrackets
+          .bind((x) => some(bracketRightPosData.substring(x.start, x.end)));
       expect(result, expected);
     });
   });
