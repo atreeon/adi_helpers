@@ -5,6 +5,12 @@ enum TwoFruits { orange, peach }
 
 enum ThreeFruits { orange, peach, banana }
 
+class Fruit {}
+
+class Orange implements Fruit {}
+
+class Peach implements Fruit {}
+
 void main() {
   group("allOptionsIf", () {
     test("1", () {
@@ -67,6 +73,39 @@ void main() {
                 TwoFruits.orange: "oh, love my oranges",
               }),
           throwsA(predicate((e) => e is Exception)));
+    });
+  });
+
+  group("caseByType", () {
+    test("1", () {
+      var valueInput = Orange();
+      var result = //
+          caseByType<Fruit, String>(valueInput, {
+        Orange: "oh, love my oranges",
+        Peach: "oooo, what a lovely soft peach",
+      });
+      expect(result, "oh, love my oranges");
+    });
+
+    test("2", () {
+      var valueInput = Peach();
+      var result = //
+          caseByType<Fruit, String>(valueInput, {
+        Orange: "oh, love my oranges",
+        Peach: "oooo, what a lovely soft peach",
+      });
+      expect(result, "oooo, what a lovely soft peach");
+    });
+
+    test("3", () {
+      var valueInput = Fruit();
+      var result = //
+          caseByType<Fruit, String>(valueInput, //
+              {
+            Orange: "oh, love my oranges",
+            Peach: "oooo, what a lovely soft peach",
+          });
+      expect(result, null);
     });
   });
 }

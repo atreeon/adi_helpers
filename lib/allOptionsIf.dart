@@ -51,3 +51,22 @@ TValue case2<TOptionType, TValue>(
 
   return value;
 }
+
+TValue caseByType<TOptionType, TValue>(
+  TOptionType selectedOption,
+  Map<Type, TValue> branches, [
+  TValue defaultValue = null,
+]) {
+  var type = selectedOption.runtimeType;
+  if (branches.keys
+      .where((x) => //
+          x == type)
+      .isEmpty) {
+    return defaultValue;
+  }
+
+  var key = branches.keys.where((x) => x == type).first;
+  var value = branches[key];
+
+  return value;
+}
