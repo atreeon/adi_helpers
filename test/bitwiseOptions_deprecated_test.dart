@@ -1,5 +1,5 @@
 import 'package:adi_helpers/allOptionsIf.dart';
-import 'package:adi_helpers/bitwiseOptions.dart';
+import 'package:adi_helpers/bitwiseOptions_deprecated.dart';
 import 'package:test_api/test_api.dart';
 
 class Settings {
@@ -48,28 +48,3 @@ void main() {
     });
   });
 }
-
-//var selectedOptions = Settings.ShowStars | Settings.ShowFlashImageOnTests;
-//
-//if (Settings().isSet(selectedOptions, Settings.ShowStars)) {
-//print("ShowStars!");
-//}
-//
-//if (Settings().isSet(selectedOptions, Settings.AutoProgressOnCorrect)) {
-//print("AutoProgressOnCorrect!");
-//}
-//
-//selectedOptions =
-//Settings().trueOption(selectedOptions, Settings.AutoProgressOnCorrect);
-//
-//print(selectedOptions);
-//
-//selectedOptions =
-//Settings().trueOption(selectedOptions, Settings.AutoProgressOnCorrect);
-//
-//print(selectedOptions);
-//
-//selectedOptions =
-//Settings().falseOption(selectedOptions, Settings.AutoProgressOnCorrect);
-//
-//print(selectedOptions);

@@ -2,6 +2,14 @@ bool isSet(int selectedOptions, int option) {
   return (selectedOptions & option) == option;
 }
 
+int toggleOption(int selectedOptions, int option) {
+  if (isSet(selectedOptions, option)) {
+    return optionToFalse(selectedOptions, option);
+  }
+
+  return optionToTrue(selectedOptions, option);
+}
+
 int optionToTrue(int selectedOptions, int newOption) {
   return selectedOptions | newOption;
 }
