@@ -2,13 +2,13 @@ class BitwiseOption<T> {
   final T type;
   final int value;
 
-  BitwiseOption(this.type, this.value);
+  const BitwiseOption(this.type, this.value);
 }
 
 class Bitwise<T> {
   final List<BitwiseOption<T>> options;
 
-  Bitwise(this.options);
+  const Bitwise(this.options);
 
   int getBitwiseValue(T type) {
     return options.firstWhere((x) => x.type == type).value;
