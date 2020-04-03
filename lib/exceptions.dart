@@ -9,3 +9,5 @@ class UnexpectedTypeException<T> implements Exception {
 class UnexpectedStateException implements Exception {
   const UnexpectedStateException();
 }
+
+class NotImplementedException {}
