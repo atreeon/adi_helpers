@@ -146,4 +146,16 @@ void main() {
       exp_splitByLastOf("this is a test", " ", ["this is a", "test"]);
     });
   });
+
+  group("removePunctuation", () {
+    test("1", () {
+      var result = removePunctuation("something !hello, ''no?");
+      expect(result, "something hello no");
+    });
+
+    test("2", () {
+      var result = removePunctuation("hyph-enated and (bracketed)");
+      expect(result, "hyph enated and bracketed");
+    });
+  });
 }

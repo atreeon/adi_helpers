@@ -157,3 +157,17 @@ class StrPos {
   bool operator ==(o) => o is StrPos && start == o.start && end == o.end;
   int get hashCode => hash2(start.hashCode, end.hashCode);
 }
+
+///Replace all punctuation with a space
+///replace any spaces with just one char
+///Trim any spaces from end and beginning of word
+///[,.;@#?!&$]
+String removePunctuation(String input) {
+  var removedChars = input.replaceAll( RegExp(r"[,.;@#?!&$'-/()]"), ' ');
+//  var removedChars = input.replaceAll(r'h+', "XXX");
+//  var removedDoubleSpaces = removedChars.replaceAll(RegExp(r"  +"), "z");
+  var removedDoubleSpaces = removedChars.replaceAll("  ", " ");
+  var removedDoubleSpaces2 = removedDoubleSpaces.replaceAll("  ", " ");
+
+  return removedDoubleSpaces2.trim();
+}
