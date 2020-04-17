@@ -1,6 +1,6 @@
 name: adi_helpers
 description: A bunch of random helpers
-version: 1.0.1
+version: 1.0.2
 author: Adrian
   
 environment:  
@@ -10,6 +10,7 @@ dependencies:
   quiver: ^2.0.1 
   dartz: ^0.8.9
   basic_utils: ^2.4.8
+  intl: ^0.16.1
 
 dev_dependencies:  
   test: ^1.0.0
