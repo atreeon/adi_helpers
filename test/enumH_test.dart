@@ -20,4 +20,10 @@ void main() {
       expect(result, null);
     });
   });
+
+//  group("enumH saveAsInt", (){
+//    test("EnumH.saveAsInt", () {
+//      var
+//    });
+//  });
 }
