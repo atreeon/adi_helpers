@@ -87,12 +87,11 @@ void main() {
     test("2 exception if no option is found", () {
       var valueInput = TwoFruits.peach;
 
-      expect(
-          () => //
-              case2(valueInput, {
-                TwoFruits.orange: "oh, love my oranges",
-              }),
-          throwsA(predicate((e) => e is Exception)));
+      var result2 = case2(valueInput, {
+        TwoFruits.orange: "oh, love my oranges",
+      });
+
+      expect(result2, null);
     });
   });
 

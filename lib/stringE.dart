@@ -1,7 +1,7 @@
 import 'package:basic_utils/basic_utils.dart';
 
 //extension methods for string
-extension String_AdiHelpers on String {
+extension String_E on String {
   bool isNullOrEmpty() {
     return StringUtils.isNullOrEmpty(this);
   }

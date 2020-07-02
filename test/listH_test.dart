@@ -5,8 +5,6 @@ import 'package:test/test.dart';
 //rounding error
 
 void main() {
-  final fnDef5 = "f5() → String";
-
   group("splitByPercentage", () {
     test("1", () {
       var list = [1, 4, 5, 6, 9];

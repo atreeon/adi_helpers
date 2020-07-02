@@ -5,12 +5,12 @@ class UnexpectedTypeException<T> implements Exception {
 
   const UnexpectedTypeException({this.message = null});
 
-  String toString() => 'An unexpected type occurred:' + //
-              typeOf<T>().toString() +
-              message ==
-          null
-      ? ""
-      : " | $message";
+  String toString() {
+    var typeStr = typeOf<T>().toString();
+    var _message = message == null ? "" : " | $message";
+
+    return "An unexpected type occurred: $typeStr$_message";
+  }
 }
 
 class UnexpectedStateException implements Exception {
