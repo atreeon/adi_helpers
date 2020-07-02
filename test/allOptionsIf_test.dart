@@ -1,5 +1,5 @@
 import 'package:adi_helpers/allOptionsIf.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 enum TwoFruits { orange, peach }
 
@@ -7,7 +7,10 @@ enum ThreeFruits { orange, peach, banana }
 
 class Fruit {}
 
-class Orange implements Fruit {}
+class Orange implements Fruit {
+  final String peelColour;
+  Orange(this.peelColour);
+}
 
 class Peach implements Fruit {}
 
@@ -35,8 +38,12 @@ void main() {
     test("3 default option, if not found", () {
       var valueInput = TwoFruits.peach;
 
-      var result = allOptionsIf(valueInput,
-          {TwoFruits.orange: () => "oh, love my oranges"}, null, "nothing");
+      var result = allOptionsIf(
+        valueInput,
+        {TwoFruits.orange: () => "oh, love my oranges"},
+        null,
+        "nothing",
+      );
       expect(result, "nothing");
     });
 
@@ -51,6 +58,19 @@ void main() {
       );
       expect(result, "peel it");
     });
+//
+//    test("5 ", () {
+//      var valueInput = Orange;
+//      var result = allOptionsIf_1(
+//        valueInput,
+//        OptionItem(),
+////        {Peach: (x) => "eat it"},
+//        {
+//          [ThreeFruits.orange, ThreeFruits.banana]: () => "peel it"
+//        },
+//      );
+//      expect(result, "peel it");
+//    });
   });
 
   group("case2", () {
@@ -77,8 +97,8 @@ void main() {
   });
 
   group("caseByType", () {
-    test("1", () {
-      var valueInput = Orange();
+    test("1 orange is input", () {
+      var valueInput = Orange("orange");
       var result = //
           caseByType<Fruit, String>(valueInput, {
         Orange: "oh, love my oranges",
@@ -87,7 +107,7 @@ void main() {
       expect(result, "oh, love my oranges");
     });
 
-    test("2", () {
+    test("2 peach is input", () {
       var valueInput = Peach();
       var result = //
           caseByType<Fruit, String>(valueInput, {
@@ -97,7 +117,7 @@ void main() {
       expect(result, "oooo, what a lovely soft peach");
     });
 
-    test("3", () {
+    test("3 no matching type & no default specified", () {
       var valueInput = Fruit();
       var result = //
           caseByType<Fruit, String>(valueInput, //
@@ -107,5 +127,18 @@ void main() {
           });
       expect(result, null);
     });
+
+//    test("4 default value specified", () {
+//      var valueInput = Fruit();
+//      var result = //
+//          caseByType<Fruit, String>(
+//              valueInput, //
+//              {
+//                Orange: "oh, love my oranges",
+//                Peach: "oooo, what a lovely soft peach",
+//              },
+//              defaultValue: "blah");
+//      expect(result, "blah");
+//    });
   });
 }

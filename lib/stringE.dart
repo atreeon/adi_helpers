@@ -9,4 +9,10 @@ extension String_AdiHelpers on String {
   bool isNotNullOrEmpty() {
     return StringUtils.isNotNullOrEmpty(this);
   }
+
+  ///in: "myString".getCharsAfter("tr")
+  ///out: "ing";
+  String getCharsAfter(String str) {
+    return this.substring(this.indexOf(str) + str.length);
+  }
 }

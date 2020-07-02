@@ -1,3 +1,4 @@
+import 'package:adi_helpers/stringE.dart';
 import 'package:adi_helpers/stringH.dart';
 import 'package:adi_helpers/testH.dart';
 import 'package:dartz/dartz.dart';
@@ -156,6 +157,14 @@ void main() {
     test("2", () {
       var result = removePunctuation("hyph-enated and (bracketed)");
       expect(result, "hyph enated and bracketed");
+    });
+  });
+
+  group("getCharsAfter", () {
+    test("1 getCharsAfter", () {
+      var str = "myString";
+      var result = str.getCharsAfter("tr");
+      expect(result, "ing");
     });
   });
 }

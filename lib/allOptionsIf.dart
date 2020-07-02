@@ -18,7 +18,7 @@ TOutput allOptionsIf<TOptionType, TOutput>(
   if (branchesSameResult != null) {
     var keys = branchesSameResult.keys.toList();
     var result1 = keys.expand((x) => x).toList();
-    result1.forEach((x) => branchesAll[x] = branchesSameResult[
+    result1.forEach((x) => branchesAll[x] = branchesSameResult[ //
         branchesSameResult.keys.firstWhere((z) => z.any((y) => y == x))]);
   }
 
@@ -26,7 +26,7 @@ TOutput allOptionsIf<TOptionType, TOutput>(
 
   if (!branchesAll.keys.any((x) => x == selectedOption)) {
     if (defaultValue == null) {
-      throw Exception(
+      throw Exception( //
           "option in allOptionsIf not found:" + selectedOption.toString());
     } else {
       return defaultValue;
@@ -52,6 +52,7 @@ TValue case2<TOptionType, TValue>(
   return value;
 }
 
+///Limitation, Map<Type, TValue> - Type can be any type!
 TValue caseByType<TOptionType, TValue>(
   TOptionType selectedOption,
   Map<Type, TValue> branches, [
@@ -70,3 +71,38 @@ TValue caseByType<TOptionType, TValue>(
 
   return value;
 }
+//
+//class OptionItem<T1, TOutput> {
+//  final T1 input;
+//  final TOutput Function(T1) fn;
+//  OptionItem(this.input, this.fn);
+//}
+//
+//TOutput allOptionsIf_1<TOptionType, TOutput>(
+//  TOptionType selectedOption,
+//  OptionItem<TOptionType, TOutput> option1, [
+//  Map<List<TOptionType>, TOutput Function()> branchesSameResult,
+//  TOutput defaultValue = null,
+//]) {
+//  var branchesAll = Map<TOptionType, TOutput Function()>();
+//
+//  if (branchesSameResult != null) {
+//    var keys = branchesSameResult.keys.toList();
+//    var result1 = keys.expand((x) => x).toList();
+//    result1.forEach((x) => branchesAll[x] = branchesSameResult[branchesSameResult.keys.firstWhere((z) => z.any((y) => y == x))]);
+//  }
+//
+//  branchesAll.addAll(branches);
+//
+//  if (!branchesAll.keys.any((x) => x == selectedOption)) {
+//    if (defaultValue == null) {
+//      throw Exception("option in allOptionsIf not found:" + selectedOption.toString());
+//    } else {
+//      return defaultValue;
+//    }
+//  }
+//
+//  var fn = branchesAll[selectedOption];
+//
+//  return fn();
+//}
