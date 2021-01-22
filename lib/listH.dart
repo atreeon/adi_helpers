@@ -7,7 +7,7 @@ class IdWithPercentage {
   IdWithPercentage(
     this.id,
     this.percentage,
-  ) : assert(id != null && percentage != null);
+  );
 }
 
 ///Takes a list of ids and values
@@ -16,7 +16,7 @@ class IdWithPercentage {
 List<IdWithPercentage> indexPercentage(List<int> ids) {
   var value = (100 / ids.length);
 
-  var result = List<IdWithPercentage>();
+  List<IdWithPercentage> result = [];
   for (var i = 0; i < ids.length; ++i) {
     result.add(IdWithPercentage(ids[i], ((i + 1) * value).round()));
   }
@@ -27,11 +27,9 @@ List<IdWithPercentage> indexPercentage(List<int> ids) {
 ///Takes a list and splits it based by the percentage values contained
 /// inside splits.
 ///1,2,4,5,6 - [40%,40%,20%] = [[1,2], [4,5], [6]]
-List<List<T>> splitByPercentage<T>(
-    List<T> list, List<Percentage> splitPercentages) {
+List<List<T>> splitByPercentage<T>(List<T> list, List<Percentage> splitPercentages) {
   var result = [<T>[]];
-  var splitIndexes =
-      splitPercentages.map((x) => list.length * (x() / 100)).toList();
+  var splitIndexes = splitPercentages.map((x) => list.length * (x() / 100)).toList();
   var stopAtIIndex = splitIndexes[0];
   splitIndexes.removeAt(0);
   var currentGroup = 0;
@@ -41,7 +39,7 @@ List<List<T>> splitByPercentage<T>(
       stopAtIIndex += splitIndexes[0];
       splitIndexes.removeAt(0);
       currentGroup++;
-      result.add(List<T>());
+      result.add([]);
     }
 
     result[currentGroup].add(list[i]);

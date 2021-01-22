@@ -3,8 +3,8 @@
 TOutput allOptionsIf<TOptionType, TOutput>(
   TOptionType selectedOption,
   Map<TOptionType, TOutput Function()> branches, [
-  Map<List<TOptionType>, TOutput Function()> branchesSameResult,
-  TOutput defaultValue = null,
+  Map<List<TOptionType>, TOutput Function()>? branchesSameResult,
+  TOutput? defaultValue = null,
 ]) {
 //I was hoping to check all the options but this is impossible
 //  without reflection or explicitly passing in all the options.
@@ -13,7 +13,7 @@ TOutput allOptionsIf<TOptionType, TOutput>(
 //I could pass in a list of values but this would be silly because
 //  it would be a manual process and I'm trying to stop manual processes!
 
-  var branchesAll = Map<TOptionType, TOutput Function()>();
+  var branchesAll = Map<TOptionType, TOutput Function()?>();
 
   if (branchesSameResult != null) {
     var keys = branchesSameResult.keys.toList();
@@ -33,15 +33,15 @@ TOutput allOptionsIf<TOptionType, TOutput>(
     }
   }
 
-  var fn = branchesAll[selectedOption];
+  var fn = branchesAll[selectedOption]!;
 
   return fn();
 }
 
-TValue case2<TOptionType, TValue>(
+TValue? case2<TOptionType, TValue>(
   TOptionType selectedOption,
   Map<TOptionType, TValue> branches, [
-  TValue defaultValue = null,
+  TValue? defaultValue = null,
 ]) {
   if (!branches.keys.any((x) => x == selectedOption)) {
     return defaultValue;
@@ -53,10 +53,10 @@ TValue case2<TOptionType, TValue>(
 }
 
 ///Limitation, Map<Type, TValue> - Type can be any type!
-TValue caseByType<TOptionType, TValue>(
+TValue? caseByType<TOptionType, TValue>(
   TOptionType selectedOption,
   Map<Type, TValue> branches, [
-  TValue defaultValue = null,
+  TValue? defaultValue = null,
 ]) {
   var type = selectedOption.runtimeType;
   if (branches.keys

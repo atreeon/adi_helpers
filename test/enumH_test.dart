@@ -14,11 +14,6 @@ void main() {
       var result = Fruits.values[0];
       expect(result, Fruits.orange);
     });
-
-    test("EnumH.string null", () {
-      var result = string(null);
-      expect(result, null);
-    });
   });
 
 //  group("enumH saveAsInt", (){

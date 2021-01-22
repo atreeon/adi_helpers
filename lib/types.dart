@@ -1,5 +1,3 @@
-
-
 class Percentage {
   final int value;
 
@@ -7,5 +5,5 @@ class Percentage {
 
   Percentage(
     this.value,
-  ) : assert(value != null && value >= 0 && value <= 100);
+  ) : assert(value >= 0 && value <= 100);
 }

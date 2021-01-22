@@ -4,7 +4,7 @@ DateTime dateOnly(DateTime dt) {
 }
 
 ///now, but without the time portion (plus [days] if passed in)
-DateTime nowDateOnly({int days}) {
+DateTime nowDateOnly({int? days}) {
   var date = dateOnly(new DateTime.now());
 
   if (days != null) {

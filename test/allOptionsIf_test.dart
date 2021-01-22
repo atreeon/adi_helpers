@@ -32,7 +32,7 @@ void main() {
           () => allOptionsIf(valueInput, {
                 TwoFruits.orange: () => "oh, love my oranges",
               }),
-          throwsA(predicate((e) => e is Exception)));
+          throwsA(predicate((dynamic e) => e is Exception)));
     });
 
     test("3 default option, if not found", () {

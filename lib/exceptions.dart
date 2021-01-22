@@ -1,7 +1,7 @@
 import 'package:adi_helpers/typeOf.dart';
 
 class UnexpectedTypeException<T> implements Exception {
-  final String message;
+  final String? message;
 
   const UnexpectedTypeException({this.message = null});
 

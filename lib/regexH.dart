@@ -1,5 +1,5 @@
 ///Returns the first match
-String regEx1(String pattern, String source) {
+String? regEx1(String pattern, String source) {
   var rgx = RegExp(pattern);
   var first = rgx.firstMatch(source);
   if (first == null) //
