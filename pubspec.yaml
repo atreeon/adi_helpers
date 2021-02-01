@@ -1,6 +1,6 @@
 name: adi_helpers
 description: A bunch of random helpers
-version: 1.0.6
+version: 1.0.7-nullsafety
 author: Adrian
   
 environment:  
@@ -14,6 +14,5 @@ dependencies:
 
 dev_dependencies:
   test: ^1.16.0-nullsafety.16
-  build_runner: ^1.10.0
 
 
