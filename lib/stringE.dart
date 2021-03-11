@@ -1,16 +1,24 @@
-import 'package:adi_helpers/exceptions.dart';
 //import 'package:basic_utils/basic_utils.dart';
 
-//extension methods for string
-extension String_E on String {
+//extension methods for nullable strings
+extension String_nullable_E on String? {
   bool isNullOrEmpty() {
-    throw NotImplementedException();
-//    return StringUtils.isNullOrEmpty(this);
+    return (this == null || this?.length == 0);
   }
 
   bool isNotNullOrEmpty() {
-    throw NotImplementedException();
-//    return StringUtils.isNotNullOrEmpty(this);
+    return !this.isNullOrEmpty();
+  }
+}
+
+//extension methods for nullable strings
+extension String_E on String {
+  bool isNullOrEmpty() {
+    return (this.length == 0);
+  }
+
+  bool isNotNullOrEmpty() {
+    return !this.isNullOrEmpty();
   }
 
   ///in: "myString".getCharsAfter("tr")

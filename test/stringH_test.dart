@@ -1,8 +1,9 @@
 import 'package:adi_helpers/stringE.dart';
 import 'package:adi_helpers/stringH.dart';
-import 'package:adi_helpers/testH.dart';
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
+
+import 'testH.dart';
 
 void main() {
   final fnDef5 = "f5() → String";
@@ -16,8 +17,11 @@ void main() {
   });
 
   group("getInBracketsRight", () {
-    void exp_getInBracketsRight(String input, Option<String> expected) => expectGen((x) => //
-        getInBracketsRight(x, BracketType.parenthesis), input, expected);
+    void exp_getInBracketsRight(String input, Option<String> expected) => expectGen(
+        (x) => //
+            getInBracketsRight(x, BracketType.parenthesis),
+        input,
+        expected);
 
     test("1", () => exp_getInBracketsRight("out b4((inner) outer)out aft", some("((inner) outer)")));
     test("2", () => exp_getInBracketsRight(fnDef5, some("()")));
@@ -33,8 +37,11 @@ void main() {
   });
 
   group("bracketPositionRight", () {
-    void exp_bracketPositionRight(String input, Option<StrPos> expected) => expectGen((x) => //
-        bracketPositionRight(x, BracketType.parenthesis), input, expected);
+    void exp_bracketPositionRight(String input, Option<StrPos> expected) => expectGen(
+        (x) => //
+            bracketPositionRight(x, BracketType.parenthesis),
+        input,
+        expected);
 
     // void exp_bracketPositionRight(String input, Option<StrPos> expected) =>
     //     expectGen(bracketPositionRight, input, expected);
