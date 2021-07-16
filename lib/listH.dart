@@ -1,4 +1,5 @@
 import 'package:adi_helpers/types.dart';
+import 'package:dartx/dartx.dart';
 
 class IdWithPercentage {
   final int id;
@@ -46,4 +47,16 @@ List<List<T>> splitByPercentage<T>(List<T> list, List<Percentage> splitPercentag
   }
 
   return result;
+}
+
+extension List_E<T> on List<T> {
+  List<T> addIfNotNull(T? item) {
+    if (item != null) //
+      return [
+        ...this,
+        ...[item],
+      ];
+
+    return this;
+  }
 }

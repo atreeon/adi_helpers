@@ -9,6 +9,25 @@ extension String_nullable_E on String? {
   bool isNotNullOrEmpty() {
     return !this.isNullOrEmpty();
   }
+
+  ///if string is empty then return null, else return string
+  ///
+  /// "blah" => "blah"
+  /// "" => null
+  /// null => null
+  String? ifEmptyNull() {
+    if (this == "") //
+      return null;
+
+    return this;
+  }
+
+  int? toIntOrNull() {
+    if (this == "" || this == null) //
+      return null;
+
+    return int.parse(this!);
+  }
 }
 
 //extension methods for nullable strings
@@ -25,5 +44,24 @@ extension String_E on String {
   ///out: "ing";
   String getCharsAfter(String str) {
     return this.substring(this.indexOf(str) + str.length);
+  }
+
+  ///if string is empty then return null, else return string
+  ///
+  /// "blah" => "blah"
+  /// "" => null
+  /// null => null
+  String? ifEmptyNull() {
+    if (this == "") //
+      return null;
+
+    return this;
+  }
+
+  int? toIntOrNull() {
+    if (this == "") //
+      return null;
+
+    return int.parse(this);
   }
 }

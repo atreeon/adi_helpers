@@ -1,10 +1,13 @@
 import 'package:dartx/dartx.dart';
 
-///Adi sort involves updating one id but there is a small chance that the ids can clash and a
+/// {@template [SortAdi]}
+///Adi sort involves updating just one id to make it higher than another
 ///
-///Easier to implement than bubble sort
+///There is a small chance that the ids can clash but its easier to implement than bubble sort
+/// and more efficient
 ///
-/// orderIds [1,5,9,14] -> up number 9 -> [1,5,10000,14]
+///Usage: orderIds [1,5,9,14] -> up number 9 -> [1,5,10000,14]
+/// {@endtemplate}
 class SortAdi<T> {
   final int Function(T) fnGetOrderId;
   final int Function(T) fnGetId;
@@ -12,6 +15,7 @@ class SortAdi<T> {
   final T Function(T item, int newOrderId) copyWithUpdateOrderId;
   final int numberInterval;
 
+  /// {@macro [SortAdi]}
   SortAdi({
     required this.fnGetOrderId,
     required this.fnGetId,

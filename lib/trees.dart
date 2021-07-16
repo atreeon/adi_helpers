@@ -116,6 +116,8 @@ List<Map<TOut, dynamic>> convertTreeToMap2<TIn, TOut>(
 }
 
 ///Flatten from a list (not a single root object with children)
+///
+///usage `var list = flattenR<Word>(wordsWithChildren, (x) => x.children);`
 List<T1> flatten<T1>(List<T1> data, List<T1>? Function(T1) fnChildren) {
   var newList = <T1>[];
 
@@ -132,6 +134,8 @@ List<T1> flatten<T1>(List<T1> data, List<T1>? Function(T1) fnChildren) {
 }
 
 ///Flatten from a root object (not a list)
+///
+///usage `var list = flattenR<ChildType>(singleWithChildren, (x) => x.children);`
 List<T1> flattenR<T1>(T1 data, List<T1>? Function(T1) fnChildren) {
   var newList = <T1>[data];
 
