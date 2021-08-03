@@ -158,7 +158,7 @@ void main() {
         ],
       ).orderId;
 
-      expect(result, -10000);
+      expect(result, 10000);
     });
 
     test("8 all orderIds are zero order up", () {

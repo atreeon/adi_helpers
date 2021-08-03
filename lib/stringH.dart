@@ -1,6 +1,6 @@
 import 'package:adi_helpers/regexH.dart';
-import 'package:quiver/core.dart';
 import 'package:dartz/dartz.dart';
+import 'package:quiver/core.dart';
 
 ///Creates a string of the determined number of spaces
 ///inp: 5
@@ -166,4 +166,18 @@ String removePunctuation(String input) {
   var removedDoubleSpaces2 = removedDoubleSpaces.replaceAll("  ", " ");
 
   return removedDoubleSpaces2.trim();
+}
+
+/// Replace the integers in a string with the strings in the list
+///
+///("1-0", ["a", "b"]) == "b-a"
+String combineStringsByPattern(String pattern, List<String> strings) {
+  var i = -1;
+  return strings.fold(pattern, (previousValue, element) {
+    i++;
+    if (previousValue.contains(i.toString())) //
+      return previousValue.replaceFirst(i.toString(), element);
+
+    return previousValue;
+  });
 }

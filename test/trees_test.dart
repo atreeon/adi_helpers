@@ -72,11 +72,38 @@ void main() {
     });
   });
 
-  group("flattenToString", () {
-    test("0", () {
-      var expected = "{1:{2:null,3:{4:null, 5:null}},6:null}";
-    });
-  });
+//  group("convertToParentalOrder", () {
+//    test("0", () {
+//      var listOfConcepts = [
+//        Concept(1, null),
+//        Concept(2, 1),
+//        Concept(3, 2),
+//        Concept(4, null),
+//        Concept(5, 4),
+//      ];
+//
+//      var result = convertToParentalOrder<Concept>(listOfConcepts, (x) => x.id);
+//      var expected = [
+//        [
+//          Concept(3, 2),
+//          Concept(2, 1),
+//          Concept(1, null),
+//        ],
+//        [
+//          Concept(5, 4),
+//          Concept(4, null),
+//        ],
+//      ];
+//
+//      expect(result.toString(), expected.toString());
+//    });
+//  });
+
+//  group("flattenToString", () {
+//    test("0", () {
+//      var expected = "{1:{2:null,3:{4:null, 5:null}},6:null}";
+//    });
+//  });
 
   group("flattenR", () {
     test("0. set all options", () {

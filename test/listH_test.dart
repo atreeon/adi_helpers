@@ -2,8 +2,6 @@ import 'package:adi_helpers/listH.dart';
 import 'package:adi_helpers/types.dart';
 import 'package:test/test.dart';
 
-//rounding error
-
 void main() {
   group("splitByPercentage", () {
     test("1", () {

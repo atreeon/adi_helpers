@@ -2,8 +2,6 @@ import 'package:adi_helpers/stringE.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final fnDef5 = "f5() → String";
-
   group("toIntOrError", () {
     test("1", () {
       var data = "";
@@ -22,6 +20,18 @@ void main() {
       var result = data.toIntOrNull();
 
       expect(result, 1);
+    });
+  });
+
+  group("getMaxIntegerOfAString", () {
+    test("0 getMaxIntegerInAString", () {
+      var result = "blah 1 blah".getMaxIntegerOfAString();
+      expect(result, 1);
+    });
+
+    test("1 getMaxIntegerInAString", () {
+      var result = "blah 1 blah2 9 3".getMaxIntegerOfAString();
+      expect(result, 9);
     });
   });
 }

@@ -136,4 +136,42 @@ void main() {
       expect(result, "ing");
     });
   });
+
+  group("replaceRegex", () {
+    test("0 one replacement", () {
+      var strings = ["myString"];
+      var pattern = "0s";
+
+      var result = combineStringsByPattern(pattern, strings);
+
+      expect(result, "myStrings");
+    });
+
+    test("1 two replacements", () {
+      var strings = ["a", "b"];
+      var pattern = "1-0";
+
+      var result = combineStringsByPattern(pattern, strings);
+
+      expect(result, "b-a");
+    });
+
+    test("2 two replacements but only one string", () {
+      var strings = ["a"];
+      var pattern = "1-0";
+
+      var result = combineStringsByPattern(pattern, strings);
+
+      expect(result, "1-a");
+    });
+
+    test("3 two strings but only one replacement", () {
+      var strings = ["a", "b"];
+      var pattern = "0";
+
+      var result = combineStringsByPattern(pattern, strings);
+
+      expect(result, "a");
+    });
+  });
 }

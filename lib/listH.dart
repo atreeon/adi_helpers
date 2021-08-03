@@ -1,5 +1,4 @@
 import 'package:adi_helpers/types.dart';
-import 'package:dartx/dartx.dart';
 
 class IdWithPercentage {
   final int id;

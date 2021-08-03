@@ -64,4 +64,22 @@ extension String_E on String {
 
     return int.parse(this);
   }
+
+  //("blah 1 blah2 9 3") == 9
+  int? getMaxIntegerOfAString() {
+    var maxNumber = this //
+        .split('')
+        .fold<int>(
+      0,
+      (previousValue, element) {
+        var value = int.tryParse(element);
+
+        if (value == null || value <= previousValue) //
+          return previousValue;
+
+        return value;
+      },
+    );
+    return maxNumber;
+  }
 }
