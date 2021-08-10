@@ -17,4 +17,12 @@ class UnexpectedStateException implements Exception {
   const UnexpectedStateException();
 }
 
-class NotImplementedException {}
+class NotImplementedException implements Exception {
+  final String? message;
+
+  const NotImplementedException({this.message = null});
+
+  String toString() {
+    return "NotImplementedException: ${message ?? ""}";
+  }
+}
