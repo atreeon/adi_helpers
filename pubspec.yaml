@@ -15,5 +15,6 @@ dependencies:
 
 dev_dependencies:
   test: ^1.16.0-nullsafety.16
+  build_runner: ^1.7.3
 
 
