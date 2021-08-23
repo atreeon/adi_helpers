@@ -158,13 +158,13 @@ void main() {
         ],
       ).orderId;
 
-      expect(result, 10000);
+      expect(result, -10000);
     });
 
     test("8 all orderIds are zero order up", () {
       var result = sut.call(
         id: 3,
-        sortDirection: SortDirection.down,
+        sortDirection: SortDirection.up,
         existingList: [
           Person(name: "A", id: 1, orderId: 0, type: "A"),
           Person(name: "B", id: 2, orderId: 0, type: "A"),

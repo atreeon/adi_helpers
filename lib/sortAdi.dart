@@ -82,7 +82,7 @@ class SortAdi<T> {
       var newOrderId = orderIdMin + ((orderIdMax - orderIdMin) / 2);
 
       if (orderIdMax - orderIdMin <= 1) //
-        return copyWithUpdateOrderId(item, orderIdMax + numberInterval);
+        return copyWithUpdateOrderId(item, orderIdMax - numberInterval);
 
       return copyWithUpdateOrderId(item, newOrderId.toInt());
     }
