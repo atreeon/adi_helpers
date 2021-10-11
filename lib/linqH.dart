@@ -1,21 +1,19 @@
 import 'dart:collection';
 
-sum(Iterable seq, [fn(x)?]) =>
+sum(Iterable seq, [fn(x)?]) => //
     seq.fold(0, (dynamic prev, element) => prev + (fn != null ? fn(element) : element));
 
-max(Iterable seq) => seq.fold(
-    0, (dynamic prev, element) => prev.compareTo(element) > 0 ? prev : element);
+max(Iterable seq) => //
+    seq.fold(0, (dynamic prev, element) => prev.compareTo(element) > 0 ? prev : element);
 
-List<GroupByX<TObj, TKey>> groupBy<TObj, TKey>(Iterable<TObj> seq,
-    {by(TObj x)?: null, Comparator? matchWith: null, valuesAs(x)?: null}) {
-  var map = new Map<TKey?, GroupByX<TObj, TKey>>();
+List<GroupByX<TObj, TKey>> groupBy<TObj, TKey>(Iterable<TObj> seq, {by(TObj x)?: null, Comparator? matchWith: null, valuesAs(x)?: null}) {
+  var map = Map<TKey?, GroupByX<TObj, TKey>>();
   seq.forEach((x) {
     var val = by!(x);
-    var key = matchWith != null
-        ? map.keys.firstWhere((k) => matchWith(val, k) == 0, orElse: () => val)
-        : val;
+    var key = matchWith != null //
+        ? map.keys.firstWhere((k) => matchWith(val, k) == 0, orElse: () => val) : val;
 
-    if (!map.containsKey(key)) map[key] = new GroupByX<TObj, TKey>(val);
+    if (!map.containsKey(key)) map[key] = GroupByX<TObj, TKey>(val);
 
     if (valuesAs != null) x = valuesAs(x);
 

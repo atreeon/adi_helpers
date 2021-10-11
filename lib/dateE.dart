@@ -43,12 +43,12 @@ import 'package:intl/intl.dart';
 ///SECOND                       s
 extension DateTime_E on DateTime {
   String format(format) {
-    var formatter = new DateFormat(format);
+    var formatter = DateFormat(format);
     return formatter.format(this);
   }
 
   String d$M$yyyy_HH$mm() => //
-  this.format("d/M/yyyy HH:mm");
+      this.format("d/M/yyyy HH:mm");
 
   String d$M$yyyy() => //
       this.format("d/M/yyyy");

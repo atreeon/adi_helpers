@@ -15,3 +15,14 @@ extension List_E<T> on List<T> {
     return _listDeepEqualsUnordered(this, compareTo);
   }
 }
+
+extension List__E on List {
+  bool equalOrderedD(List compareTo) {
+    return _listDeepEqualsOrdered(this, compareTo);
+  }
+
+  ///Deep equals
+  bool equalUnorderedD(List compareTo) {
+    return _listDeepEqualsUnordered(this, compareTo);
+  }
+}

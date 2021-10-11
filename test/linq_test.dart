@@ -22,11 +22,15 @@ void main() {
 
   group("groupBy", () {
     test("0", () {
-      var people = new List<_Person>.from([new _Person(1, "Bob"), new _Person(2, "Bob"), new _Person(3, "Max")]);
+      var people = List<_Person>.from([
+        _Person(1, "Bob"),
+        _Person(2, "Bob"),
+        _Person(3, "Max"),
+      ]);
 
-      var expected = new List<List<_Person>>.from([
-        [new _Person(1, "Bob"), new _Person(2, "Bob")],
-        [new _Person(3, "Max")]
+      var expected = List<List<_Person>>.from([
+        [_Person(1, "Bob"), _Person(2, "Bob")],
+        [_Person(3, "Max")]
       ]);
 
       var result = groupBy<_Person, String>(people, by: (val) => val.name);
@@ -38,11 +42,15 @@ void main() {
 
   group("leftJoin", () {
     test("basic", () {
-      var people = [new _Person(1, "Bob"), new _Person(2, "Bob"), new _Person(3, "Max")];
+      var people = [_Person(1, "Bob"), _Person(2, "Bob"), _Person(3, "Max")];
 
-      var peopleToUpdate = [new _Person(2, "Bobby"), new _Person(3, "Max Stanley")];
+      var peopleToUpdate = [_Person(2, "Bobby"), _Person(3, "Max Stanley")];
 
-      var expected = [new _Person(1, "Bob"), new _Person(2, "Bobby"), new _Person(3, "Max Stanley")].map((f) => f.toString()).toList();
+      var expected = [
+        _Person(1, "Bob"),
+        _Person(2, "Bobby"),
+        _Person(3, "Max Stanley"),
+      ].map((f) => f.toString()).toList();
 
       var result = people
           .expand<_Person>((_Person p) {

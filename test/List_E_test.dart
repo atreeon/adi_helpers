@@ -7,7 +7,7 @@ void main() {
       var list1 = [1, 2, 3];
       var list2 = [1, 2, 3];
 
-      var result = list1.equalOrdered(list2);
+      var result = list1.equalOrderedD(list2);
 
       expect(result, true);
     });
@@ -16,7 +16,7 @@ void main() {
       var list1 = [1, 2, 3];
       var list2 = [1, 3, 2];
 
-      var result = list1.equalOrdered(list2);
+      var result = list1.equalOrderedD(list2);
 
       expect(result, false);
     });
@@ -25,7 +25,7 @@ void main() {
       var list1 = [1, 2, 3];
       var list2 = [1, 3, 2];
 
-      var result = list1.equalUnordered(list2);
+      var result = list1.equalUnorderedD(list2);
 
       expect(result, true);
     });
@@ -34,7 +34,7 @@ void main() {
       var list1 = [1, 2, 3];
       var list2 = [1, 3, 2, 3];
 
-      var result = list1.equalOrdered(list2);
+      var result = list1.equalOrderedD(list2);
 
       expect(result, false);
     });
