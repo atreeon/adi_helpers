@@ -1,5 +1,6 @@
 //Just an if statement but it breaks if not all options for
 //  an enum are handled
+@deprecated
 TOutput allOptionsIf<TOptionType, TOutput>(
   TOptionType selectedOption,
   Map<TOptionType, TOutput Function()> branches, [

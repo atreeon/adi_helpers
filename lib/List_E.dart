@@ -14,6 +14,23 @@ extension List_E<T> on List<T> {
   bool equalUnordered(List<T> compareTo) {
     return _listDeepEqualsUnordered(this, compareTo);
   }
+
+  T? getPrevious<T2>(T Function(T item) getId, T item) => //
+      this.getNthInRelationToX(getId, item, -1);
+
+  T? getNext<T2>(T Function(T item) getId, T item) => //
+      this.getNthInRelationToX(getId, item, 1);
+
+  T? getNthInRelationToX<T2>(T Function(T item) getId, T item, int nth) {
+    var index = this.indexOf(item);
+    var nthIndex = index + nth;
+
+    if (nthIndex < 0 || nthIndex >= this.length) //
+      return null;
+
+    var previousItem = this.elementAt(nthIndex);
+    return previousItem;
+  }
 }
 
 extension List__E on List {

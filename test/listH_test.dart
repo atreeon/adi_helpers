@@ -41,7 +41,7 @@ void main() {
   });
 
   group("indexPercentage", () {
-    test("1", () {
+    test("1b", () {
       var list = [1, 2, 3, 4];
 
       var result = indexPercentage(list);

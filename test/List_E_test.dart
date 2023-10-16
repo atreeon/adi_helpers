@@ -39,4 +39,46 @@ void main() {
       expect(result, false);
     });
   });
+
+  group("List_H getNth", () {
+    test("a 0 previous", () {
+      var list1 = [7, 0, 2, 3];
+
+      var result = list1.getPrevious((x) => x, 2);
+
+      expect(result, 0);
+    });
+
+    test("a 1 no previous item", () {
+      var list1 = [7, 0, 2, 3];
+
+      var result = list1.getPrevious((x) => x, 7);
+
+      expect(result, null);
+    });
+
+    test("a 2 next", () {
+      var list1 = [7, 0, 2, 3];
+
+      var result = list1.getNext((x) => x, 0);
+
+      expect(result, 2);
+    });
+
+    test("a 3 no next item", () {
+      var list1 = [7, 0, 2, 3];
+
+      var result = list1.getNext((x) => x, 3);
+
+      expect(result, null);
+    });
+
+    test("a 4 getNthInRelationToX", () {
+      var list1 = [7, 0, 2, 3];
+
+      var result = list1.getNthInRelationToX((x) => x, 7, 3);
+
+      expect(result, 3);
+    });
+  });
 }
