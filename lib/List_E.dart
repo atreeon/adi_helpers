@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:dartx/dartx.dart';
 
 // ignore: top_level_instance_method
 var _listDeepEqualsOrdered = const DeepCollectionEquality().equals;
@@ -15,13 +16,13 @@ extension List_E<T> on List<T> {
     return _listDeepEqualsUnordered(this, compareTo);
   }
 
-  T? getPrevious<T2>(T Function(T item) getId, T item) => //
-      this.getNthInRelationToX(getId, item, -1);
+  T? getPreviousByItem(T item) => //
+      this.getNthInRelationToXByItem(item, -1);
 
-  T? getNext<T2>(T Function(T item) getId, T item) => //
-      this.getNthInRelationToX(getId, item, 1);
+  T? getNextByItem(T item) => //
+      this.getNthInRelationToXByItem(item, 1);
 
-  T? getNthInRelationToX<T2>(T Function(T item) getId, T item, int nth) {
+  T? getNthInRelationToXByItem(T item, int nth) {
     var index = this.indexOf(item);
     var nthIndex = index + nth;
 
@@ -30,6 +31,18 @@ extension List_E<T> on List<T> {
 
     var previousItem = this.elementAt(nthIndex);
     return previousItem;
+  }
+
+  T? getPreviousById<T2>(T2 Function(T item) getId, T2 id) => //
+  this.getNthInRelationToXById(getId, id, -1);
+
+  T? getNextById<T2>(T2 Function(T item) getId, T2 id) => //
+  this.getNthInRelationToXById(getId, id, 1);
+
+  T? getNthInRelationToXById<T2>(T2 Function(T item) getId, T2 id, int nth) {
+    var item = firstWhere((element) => getId(element) == id);
+    return getNthInRelationToXByItem(item, nth);
+
   }
 }
 

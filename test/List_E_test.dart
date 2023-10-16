@@ -1,6 +1,13 @@
 import 'package:adi_helpers/List_E.dart';
 import 'package:test/test.dart';
 
+var personList = [
+  Person(19, "bob", 47),
+  Person(12, "rob", 45),
+  Person(4, "bobby", 46),
+  Person(6, "bert", 43),
+];
+
 void main() {
   group("List_H equals", () {
     test("0 list", () {
@@ -40,11 +47,11 @@ void main() {
     });
   });
 
-  group("List_H getNth", () {
+  group("List_H getNthByItem", () {
     test("a 0 previous", () {
       var list1 = [7, 0, 2, 3];
 
-      var result = list1.getPrevious((x) => x, 2);
+      var result = list1.getPreviousByItem(2);
 
       expect(result, 0);
     });
@@ -52,7 +59,7 @@ void main() {
     test("a 1 no previous item", () {
       var list1 = [7, 0, 2, 3];
 
-      var result = list1.getPrevious((x) => x, 7);
+      var result = list1.getPreviousByItem(7);
 
       expect(result, null);
     });
@@ -60,7 +67,7 @@ void main() {
     test("a 2 next", () {
       var list1 = [7, 0, 2, 3];
 
-      var result = list1.getNext((x) => x, 0);
+      var result = list1.getNextByItem(0);
 
       expect(result, 2);
     });
@@ -68,7 +75,7 @@ void main() {
     test("a 3 no next item", () {
       var list1 = [7, 0, 2, 3];
 
-      var result = list1.getNext((x) => x, 3);
+      var result = list1.getNextByItem(3);
 
       expect(result, null);
     });
@@ -76,9 +83,49 @@ void main() {
     test("a 4 getNthInRelationToX", () {
       var list1 = [7, 0, 2, 3];
 
-      var result = list1.getNthInRelationToX((x) => x, 7, 3);
+      var result = list1.getNthInRelationToXByItem(7, 3);
 
       expect(result, 3);
     });
   });
+
+  group("List_H getNthById", () {
+    test("b 0 previous", () {
+      var result = personList.getPreviousById((item) => item.id, 4);
+
+      expect(result!.name, "rob");
+    });
+
+    test("b 1 no previous item", () {
+      var result = personList.getPreviousById((item) => item.id, 19);
+
+      expect(result, null);
+    });
+
+    test("b 2 next", () {
+      var result = personList.getNextById((item) => item.id, 4);
+
+      expect(result!.name, "bert");
+    });
+
+    test("b 3 no next item", () {
+      var result = personList.getNextById((item) => item.id, 6);
+
+      expect(result, null);
+    });
+
+    test("b 4 getNthInRelationToX", () {
+      var result = personList.getNthInRelationToXById((item) => item.id, 6, -2);
+
+      expect(result!.name, "rob");
+    });
+  });
+}
+
+class Person {
+  final int id;
+  final String name;
+  final int age;
+
+  Person(this.id, this.name, this.age);
 }
