@@ -119,6 +119,12 @@ void main() {
 
       expect(result!.name, "rob");
     });
+
+    test("b 5 no ", () {
+      var result = personList.getNthInRelationToXById((item) => item.id, 6, -2);
+
+      expect(result!.name, "rob");
+    });
   });
 }
 
