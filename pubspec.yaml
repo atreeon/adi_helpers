@@ -1,6 +1,6 @@
 name: adi_helpers
 description: A bunch of random helpers
-version: 1.2.0
+version: 1.2.1
 
 environment:  
   sdk: '>=3.1.3 <4.0.0'
