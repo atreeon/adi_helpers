@@ -72,6 +72,9 @@ TValue? caseByType<TOptionType, TValue>(
 
   return value;
 }
+
+
+
 //
 //class OptionItem<T1, TOutput> {
 //  final T1 input;
