@@ -1,0 +1,1 @@
+//don't think you can make extension methods on generic enums
