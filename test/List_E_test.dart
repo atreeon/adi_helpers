@@ -126,6 +126,16 @@ void main() {
       expect(result!.name, "rob");
     });
   });
+
+  group("List_H getDuplicates", () {
+    test("c 0 getDuplicates", () {
+      var myList1 = [1, 3, 4, 4, 6, 7, 8, 8, 9];
+
+      var result = myList1.getDuplicates();
+
+      expect(result, [4, 4, 8, 8]);
+    });
+  });
 }
 
 class Person {

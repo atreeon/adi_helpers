@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:dartx/dartx.dart';
 
 // ignore: top_level_instance_method
 var _listDeepEqualsOrdered = const DeepCollectionEquality().equals;
@@ -34,16 +33,21 @@ extension List_E<T> on List<T> {
   }
 
   T? getPreviousById<T2>(T2 Function(T item) getId, T2 id) => //
-  this.getNthInRelationToXById(getId, id, -1);
+      this.getNthInRelationToXById(getId, id, -1);
 
   T? getNextById<T2>(T2 Function(T item) getId, T2 id) => //
-  this.getNthInRelationToXById(getId, id, 1);
+      this.getNthInRelationToXById(getId, id, 1);
 
   T? getNthInRelationToXById<T2>(T2 Function(T item) getId, T2 id, int nth) {
     var item = firstWhere((element) => getId(element) == id);
     return getNthInRelationToXByItem(item, nth);
-
   }
+
+  bool hasDuplicates() => this.length != this.toSet().length;
+
+  List<T> getDuplicates() => this //
+      .where((x) => this.where((y) => x == y).length > 1)
+      .toList();
 }
 
 extension List__E on List {
